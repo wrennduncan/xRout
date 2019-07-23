@@ -1,0 +1,44 @@
+.Modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: black;
+    border-style: solid;
+    border-color: red;
+    color: white
+  }
+
+  .Overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rebeccapurple;
+  }
+
+  .Modal-header {
+    text-align: center;
+  }
+
+  .Flex-container {
+    text-align: center;
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  .Modal-forms {
+    padding-top: 10px;
+    padding-right: 100px;
+    padding-left: 3px;
+  }
+
+  .Modal-close {
+    border-style: solid;
+    border-color: red;
+  }
+
+  .Modal-input {
+    padding-left: 10px;
+  }

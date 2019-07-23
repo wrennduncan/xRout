@@ -7,7 +7,50 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+blueText {
+  color: dodgerblue;
+}
+
+.button {
+  display: flex;
+  background-color: dodgerblue;
+  color: white;
+  justify-content: left;
+  flex-direction: column-reverse;
+}
+
+.blue {
+  background-color: blue; 
+  font-size: 50px;
+}
+
+flexContainer {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: center;
+
+}
+
+routines {
+  position: absolute,
+  
+}
+
+.app-header {
+  color: red;
+}
+
+
+.rbc-event-content {
+  background-color: red;
+}
+
+.rbc-event {
+  background-color: red !important;
 }
