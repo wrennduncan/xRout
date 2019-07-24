@@ -1,6 +1,7 @@
 import firebase from '../../../utils/firebase';
 export const GET_ROUTINE = 'get_routine';
 export const POST_ROUTINE = 'post_routine';
+export const SELECT_ROUTINE = 'select_routine';
 
 var database = firebase.database();
 export function postRoutine() {
@@ -21,12 +22,20 @@ export function getRoutine() {
 
     return dispatch => {
         routines.on('value', snapshot => {
-            console.log('xROUT', snapshot.val());
             //_.each(snapshot.val(), () => )
             dispatch({
                 type: GET_ROUTINE,
                 payload: snapshot.val(),
             })
+        })
+    }
+}
+
+export function selectRoutine(routineId) {
+    return dispatch => {
+        dispatch({
+            type: SELECT_ROUTINE,
+            payload: {routineId : routineId},
         })
     }
 }

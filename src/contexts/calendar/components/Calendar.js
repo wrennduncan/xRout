@@ -18,7 +18,6 @@ class Calendar extends React.Component {
     super();
     const now = new Date();
     this.makeChecks = this.makeChecks.bind(this);
-    this.returnDate = this.returnDate.bind(this);
 
     //TODO: does this need to be a separate method
 
@@ -32,6 +31,7 @@ class Calendar extends React.Component {
     _.each(this.props.checks, (check, index) => {
       const now = new Date();
 
+      console.log("Check", check.date)
       const chk = {
         id: index,
         title: check.routine,
@@ -49,18 +49,12 @@ class Calendar extends React.Component {
     this.props.getCheck();
     //this.props.getChecksByRoutine();
 
-    console.log('mountlog', this.props.checks);
-  }
-
-  returnDate(){
-    console.log("gave you a date")
   }
 
   handleSelect = ({start}) => {
-    console.log()
-    //{start, end}
     const title = window.prompt("text is still working")
-    this.props.createCheck("-Lhec71T72LkMNl772aU", start);
+    console.log("so close", this.props.routine.routineId, start)
+    this.props.createCheck(this.props.routine.routineId, start);
     //if (title)
       // this.setState({
       //   // events: [
@@ -76,7 +70,6 @@ class Calendar extends React.Component {
 
 
   render() {  
-    console.log("props now", this.props.checks)
     const checks = this.props.checks && this.makeChecks();
 
     //TODO: when you click on an item from the list of routines have it pull the identifire from the DB
@@ -101,10 +94,10 @@ class Calendar extends React.Component {
 //TODO: read more about redux
 
 function mapStateToProps(state){
-    console.log("state checks", state)
     return {
         calendar: state.calendar,
         checks: state.checks,
+        routine: state.routine,
     }
 }
 

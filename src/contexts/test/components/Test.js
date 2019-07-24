@@ -13,11 +13,9 @@ class Test extends Component {
     }
     
     onButtonPress(){
-        console.log('You pressed');
     }
 
     render() {
-        console.log('indexTest', this.props.test);
         return(
         <div>
             <button onClick={this.props.getTest}>

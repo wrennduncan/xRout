@@ -4,7 +4,6 @@ export const POST_TEST = 'post_test';
 
 var database = firebase.database();
 export function postTest() {
-    console.log('postTest');
     const test = database.ref('Test').push().set({
         testValue : 'inputValue',
     })
@@ -22,8 +21,6 @@ export function getTest() {
 
     return dispatch => {
         tests.on('value', snapshot => {
-            console.log("Test Called");
-            console.log('tests', snapshot.val());
             dispatch({
                 type: GET_TEST,
                 payload: snapshot.val(),

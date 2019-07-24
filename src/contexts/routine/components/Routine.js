@@ -4,7 +4,8 @@ import {connect} from 'react-redux';
 import _ from 'underscore';
 import { thisExpression } from '@babel/types';
 //import '../../../index.css';
-import {getCheck, getCheckByRoutine} from "../../calendar/actions/calendar_actions";
+import {getCheck, getCheckByRoutine,} from "../../calendar/actions/calendar_actions";
+import {selectRoutine} from "../actions/routine_action";
 
 
 class Routine extends Component {
@@ -12,7 +13,7 @@ class Routine extends Component {
         super(props);
     
         this.renderRoutines = this.renderRoutines.bind(this);
-        this.alertName = this.alertName.bind(this);
+        this.selectRoutine = this.selectRoutine.bind(this);
 
         this.state = {
         }
@@ -26,9 +27,8 @@ class Routine extends Component {
     renderRoutines() {
         //how does this.props.routine represent the list of routines? I think it comes from index
         return _.map(this.props.routine, (routine, index, key) => {
-            //console.log("full", index)
             return (
-                <li key={index} onClick={() => this.alertName(index)}>{routine.name}</li>
+                <li key={index} onClick={() => this.selectRoutine(index)}>{routine.name}</li>
             )
         })
     }
@@ -38,26 +38,27 @@ class Routine extends Component {
 
 
 
-    alertName(routineId) {
-        this.props.getCheckByRoutine(routineId)
-
+    selectRoutine(routineId) {
+        this.props.getCheckByRoutine(routineId);
+        this.props.selectRoutine(routineId);
     }
 
     render() {
+        console.log("routine redux state", this.props.routine)
         return(
-        
-        <div>
-            <button onClick={this.props.getRoutine}>
-            Get Routine
-            </button>
-            <button onClick={this.props.postRoutine}>
-            Add Routine
-            </button>
-            <ul>
-            Routines:
-                {this.renderRoutines()}
-            </ul>
-        </div>)
+            <div>
+                <button onClick={this.props.getRoutine}>
+                Get Routine
+                </button>
+                <button onClick={this.props.postRoutine}>
+                Add Routine
+                </button>
+                <ul>
+                Routines:
+                    {this.renderRoutines()}
+                </ul>
+            </div>
+        )
     }
 }
 
@@ -68,4 +69,4 @@ function mapStateToProps(state){
 }
 
 
-export default connect(mapStateToProps, {getRoutine, postRoutine, getCheckByRoutine})(Routine);
+export default connect(mapStateToProps, {getRoutine, postRoutine, getCheckByRoutine, selectRoutine})(Routine);

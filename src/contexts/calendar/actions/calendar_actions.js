@@ -21,13 +21,11 @@ export function getCheck() {
 export function getCheckByRoutine(routineId) {
     const checks = database.ref("Check");
     //need to get past the first check1, check2 section
-    console.log("routineId", routineId)
     const checksByRoutine = checks.orderByChild("routine").equalTo(routineId);
 
 
     return dispatch => {
         checksByRoutine.on('value', snapshot => {
-            console.log("checkByRoutine", snapshot.val())
             dispatch({ 
                 type: GET_CHECK_BY_ROUTINE,
                 payload: snapshot.val(),
