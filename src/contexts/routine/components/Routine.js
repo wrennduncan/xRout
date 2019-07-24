@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import _ from 'underscore';
 import { thisExpression } from '@babel/types';
 //import '../../../index.css';
+import {getCheck, getCheckByRoutine} from "../../calendar/actions/calendar_actions";
 
 
 class Routine extends Component {
@@ -24,12 +25,10 @@ class Routine extends Component {
 
     renderRoutines() {
         //how does this.props.routine represent the list of routines? I think it comes from index
-        console.log("yest", this.props.routine)
         return _.map(this.props.routine, (routine, index, key) => {
-            //console.log("Key", key)
             //console.log("full", index)
             return (
-                <li key={index} onClick={this.alertName}>{routine.name}</li>
+                <li key={index} onClick={() => this.alertName(index)}>{routine.name}</li>
             )
         })
     }
@@ -40,8 +39,7 @@ class Routine extends Component {
 
 
     alertName(routineId) {
-        console.log("the alert worked");
-        this.props.getChecksByRoutine()
+        this.props.getCheckByRoutine(routineId)
 
     }
 
@@ -70,4 +68,4 @@ function mapStateToProps(state){
 }
 
 
-export default connect(mapStateToProps, {getRoutine, postRoutine})(Routine);
+export default connect(mapStateToProps, {getRoutine, postRoutine, getCheckByRoutine})(Routine);

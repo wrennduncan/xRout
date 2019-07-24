@@ -7,19 +7,18 @@ import './calendar.css';
 import Modal from 'react-modal';
 import {Calendar as BigCalendar, momentLocalizer} from "react-big-calendar";
 import "react-big-calendar/lib/css/react-big-calendar.css";
-import {getCheck, getChecksByRoutine} from "../actions/calendar_actions";
+import {getCheck, getCheckByRoutine, createCheck} from "../actions/calendar_actions";
 
 // moment.locale("en");
 // BigCalendar.momentLocalizer(moment);
-const localizer = momentLocalizer(moment);
-
-  //Modal.setAppElement('#yourAppElement') 
+const localizer = momentLocalizer(moment); 
 
 class Calendar extends React.Component {
   constructor() {
     super();
     const now = new Date();
     this.makeChecks = this.makeChecks.bind(this);
+    this.returnDate = this.returnDate.bind(this);
 
     //TODO: does this need to be a separate method
 
@@ -48,12 +47,32 @@ class Calendar extends React.Component {
 
   componentDidMount() {
     this.props.getCheck();
-    this.props.getChecksByRoutine();
+    //this.props.getChecksByRoutine();
 
     console.log('mountlog', this.props.checks);
   }
 
+  returnDate(){
+    console.log("gave you a date")
+  }
 
+  handleSelect = ({start}) => {
+    console.log()
+    //{start, end}
+    const title = window.prompt("text is still working")
+    this.props.createCheck("-Lhec71T72LkMNl772aU", start);
+    //if (title)
+      // this.setState({
+      //   // events: [
+      //   //   ...this.state.events,
+      //   //   {
+      //   //     start,
+      //   //     end,
+      //   //     title,
+      //   //   },
+      //   // ],
+      // })
+  }
 
 
   render() {  
@@ -65,11 +84,14 @@ class Calendar extends React.Component {
     return(
       <div style={{ height: '300px'}}>
         <BigCalendar
+          selectable
           events={checks}
           startAccessor="start"
           endAccessor="end"
           defaultDate={moment().toDate()}
           localizer={localizer}
+          // onSelectEvent={event => alert("our alert")}
+           onSelectSlot={this.handleSelect}
         />
       </div>
     );
@@ -86,4 +108,4 @@ function mapStateToProps(state){
     }
 }
 
-export default connect(mapStateToProps, {getCheck, getChecksByRoutine})(Calendar);
+export default connect(mapStateToProps, {getCheck, getCheckByRoutine, createCheck})(Calendar);

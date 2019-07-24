@@ -1,6 +1,7 @@
 import firebase from '../../../utils/firebase';
 export const GET_CHECK = 'get_check';
 export const GET_CHECK_BY_ROUTINE = 'get_check_by_routine';
+export const POST_CHECK = 'post_check';
 
 var database = firebase.database();
 
@@ -17,10 +18,12 @@ export function getCheck() {
     }
 }
 
-export function getChecksByRoutine(routineId) {
+export function getCheckByRoutine(routineId) {
     const checks = database.ref("Check");
     //need to get past the first check1, check2 section
-    const checksByRoutine = checks.orderByChild("routine").equalTo("-LkV8aRFiZ52hiGkZ-kr");
+    console.log("routineId", routineId)
+    const checksByRoutine = checks.orderByChild("routine").equalTo(routineId);
+
 
     return dispatch => {
         checksByRoutine.on('value', snapshot => {
@@ -29,6 +32,20 @@ export function getChecksByRoutine(routineId) {
                 type: GET_CHECK_BY_ROUTINE,
                 payload: snapshot.val(),
             })
+        })
+    }
+}
+
+export function createCheck(routineId, date) {
+    const check = database.ref('Check').push().set({
+        date : date.toString(),
+        routine: routineId,
+    })
+
+    return dispatch => {
+        dispatch({
+            type: POST_CHECK,
+            payload: 'I made a new check in the database',
         })
     }
 }
