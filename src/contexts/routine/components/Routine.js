@@ -64,7 +64,7 @@ class Routine extends Component {
 
 function mapStateToProps(state){
     return {
-        routine: state.routine,
+        routine: state.routine.routines,
     }
 }
 

@@ -31,12 +31,11 @@ class Calendar extends React.Component {
     _.each(this.props.checks, (check, index) => {
       const now = new Date();
 
-      console.log("Check", check.date)
       const chk = {
         id: index,
         title: check.routine,
-        start: now,
-        end: now,
+        start: check.date,
+        end: check.date,
         //TODO: make dates change
         //Note: what if we used a date picker and separated the Year, Month, and Date to make input into the Date() format easy
       }
@@ -46,15 +45,27 @@ class Calendar extends React.Component {
   }
 
   componentDidMount() {
-    this.props.getCheck();
+     this.props.getCheck();
+     console.log("this props", this.props)
+     this.props.routineId && this.props.getCheckByRoutine(this.props.routineId)
     //this.props.getChecksByRoutine();
+
+  }
+
+  componentDidUpdate(prevProps) {
+    console.log("Now", this.props)
+    // if(this.props.routineId !== this.prevProps.routineId) {
+
+    //   this.props.routineId && this.props.getCheckByRoutine(this.props.routineId);
+    // }
 
   }
 
   handleSelect = ({start}) => {
     const title = window.prompt("text is still working")
-    console.log("so close", this.props.routine.routineId, start)
-    this.props.createCheck(this.props.routine.routineId, start);
+    console.log("props yo", this.props)
+    console.log("so close", this.props.routineId, start)
+    this.props.createCheck(this.props.routineId, start);
     //if (title)
       // this.setState({
       //   // events: [
@@ -71,9 +82,9 @@ class Calendar extends React.Component {
 
   render() {  
     const checks = this.props.checks && this.makeChecks();
-
+    console.log("props yooo", this.props)
     //TODO: when you click on an item from the list of routines have it pull the identifire from the DB
-
+    // this.props.routineId && this.props.getCheckByRoutine(this.props.routineId);
     return(
       <div style={{ height: '300px'}}>
         <BigCalendar
@@ -94,10 +105,11 @@ class Calendar extends React.Component {
 //TODO: read more about redux
 
 function mapStateToProps(state){
+  console.log("state here", state)
     return {
         calendar: state.calendar,
         checks: state.checks,
-        routine: state.routine,
+        routineId: state.routine.routineId,
     }
 }
 
