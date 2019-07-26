@@ -44,7 +44,6 @@ class Routine extends Component {
     }
 
     render() {
-        console.log("routine redux state", this.props.routine)
         return(
             <div>
                 <button onClick={this.props.getRoutine}>
@@ -65,6 +64,7 @@ class Routine extends Component {
 function mapStateToProps(state){
     return {
         routine: state.routine.routines,
+        routineId: state.routine.routineId
     }
 }
 

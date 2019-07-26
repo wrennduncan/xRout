@@ -47,3 +47,10 @@ export function createCheck(routineId, date) {
         })
     }
 }
+
+export function deleteCheck(key) {
+    const check = database.ref('Check').child(key);
+    return dispatch => {
+        check.remove();
+    }
+}

@@ -7,11 +7,11 @@ import './calendar.css';
 import Modal from 'react-modal';
 import {Calendar as BigCalendar, momentLocalizer} from "react-big-calendar";
 import "react-big-calendar/lib/css/react-big-calendar.css";
-import {getCheck, getCheckByRoutine, createCheck} from "../actions/calendar_actions";
+import {getCheck, getCheckByRoutine, createCheck, deleteCheck} from "../actions/calendar_actions";
 
 // moment.locale("en");
 // BigCalendar.momentLocalizer(moment);
-const localizer = momentLocalizer(moment); 
+const localizer = momentLocalizer(moment);
 
 class Calendar extends React.Component {
   constructor() {
@@ -45,44 +45,26 @@ class Calendar extends React.Component {
   }
 
   componentDidMount() {
-     this.props.getCheck();
-     console.log("this props", this.props)
-     this.props.routineId && this.props.getCheckByRoutine(this.props.routineId)
-    //this.props.getChecksByRoutine();
-
+    this.props.getCheck();
   }
 
   componentDidUpdate(prevProps) {
-    console.log("Now", this.props)
-    // if(this.props.routineId !== this.prevProps.routineId) {
-
-    //   this.props.routineId && this.props.getCheckByRoutine(this.props.routineId);
-    // }
-
+    if(this.props.routineId && this.props.routineId !== prevProps.routineId) {
+      this.props.getCheckByRoutine(this.props.routineId);
+    }
   }
 
   handleSelect = ({start}) => {
-    const title = window.prompt("text is still working")
-    console.log("props yo", this.props)
-    console.log("so close", this.props.routineId, start)
     this.props.createCheck(this.props.routineId, start);
-    //if (title)
-      // this.setState({
-      //   // events: [
-      //   //   ...this.state.events,
-      //   //   {
-      //   //     start,
-      //   //     end,
-      //   //     title,
-      //   //   },
-      //   // ],
-      // })
   }
 
+  deleteCheck = (check) => {
+    this.props.deleteCheck(check.id);
+  }
 
-  render() {  
+  render() {
     const checks = this.props.checks && this.makeChecks();
-    console.log("props yooo", this.props)
+    console.log("PROPS", this.props.routineId)
     //TODO: when you click on an item from the list of routines have it pull the identifire from the DB
     // this.props.routineId && this.props.getCheckByRoutine(this.props.routineId);
     return(
@@ -94,7 +76,7 @@ class Calendar extends React.Component {
           endAccessor="end"
           defaultDate={moment().toDate()}
           localizer={localizer}
-          // onSelectEvent={event => alert("our alert")}
+          onSelectEvent={event => this.deleteCheck(event)}
            onSelectSlot={this.handleSelect}
         />
       </div>
@@ -105,7 +87,6 @@ class Calendar extends React.Component {
 //TODO: read more about redux
 
 function mapStateToProps(state){
-  console.log("state here", state)
     return {
         calendar: state.calendar,
         checks: state.checks,
@@ -113,4 +94,4 @@ function mapStateToProps(state){
     }
 }
 
-export default connect(mapStateToProps, {getCheck, getCheckByRoutine, createCheck})(Calendar);
+export default connect(mapStateToProps, {getCheck, getCheckByRoutine, createCheck, deleteCheck})(Calendar);
