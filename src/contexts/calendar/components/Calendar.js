@@ -20,7 +20,6 @@ class Calendar extends React.Component {
     this.makeChecks = this.makeChecks.bind(this);
 
     //TODO: does this need to be a separate method
-
     this.state = {
       name: 'React',
     };
@@ -33,7 +32,7 @@ class Calendar extends React.Component {
 
       const chk = {
         id: index,
-        title: check.routine,
+        title: '',
         start: check.date,
         end: check.date,
         //TODO: make dates change
@@ -86,7 +85,7 @@ class Calendar extends React.Component {
     //TODO: when you click on an item from the list of routines have it pull the identifire from the DB
     // this.props.routineId && this.props.getCheckByRoutine(this.props.routineId);
     return(
-      <div style={{ height: '300px'}}>
+      <div style={{ height: '500px'}}>
         <BigCalendar
           selectable
           events={checks}
@@ -95,7 +94,26 @@ class Calendar extends React.Component {
           defaultDate={moment().toDate()}
           localizer={localizer}
           // onSelectEvent={event => alert("our alert")}
-           onSelectSlot={this.handleSelect}
+          eventPropGetter={
+            (event) => {
+              let newStyle = {
+                display: 'inline-block',
+                width: '50px',
+                height: '50px',
+                border: '7px solid #fff',
+                background: `linear-gradient(45deg, rgba(0,0,0,0) 0%,rgba(0,0,0,0) 43%,#ff0000 45%,#ff0000 55%,rgba(0,0,0,0) 57%,rgba(0,0,0,0) 100%), 
+                              linear-gradient(135deg, #fff 0%,#fff 43%,#ff0000 45%,#ff0000 55%,#fff 57%,#fff 100%)`,
+              };
+              // if (event.isMine){
+              //   newStyle.backgroundColor = "lightgreen"
+              // }
+              return {
+                className: "",
+                style: newStyle
+              };
+            }
+          }
+          onSelectSlot={this.handleSelect}
         />
       </div>
     );

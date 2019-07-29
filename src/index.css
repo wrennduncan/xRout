@@ -46,11 +46,12 @@ routines {
   color: red;
 }
 
-
-.rbc-event-content {
-  background-color: red;
+.rbc-row-segment {
+  /* padding: 0 1px 1px 1px; */
+  text-align: center;
+  vertical-align: relative;
 }
 
-.rbc-event {
-  background-color: red !important;
-}
+/* .rbc-calendar *, .rbc-calendar *:before, .rbc-calendar *:after{
+  box-sizing: unset !important;
+} */
