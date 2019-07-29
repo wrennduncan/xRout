@@ -33,10 +33,9 @@ class Routine extends Component {
         })
     }
 
-    //TODO: look up how to log the key of an li
-    //TODO: how to pass a variable into a function on click
-
-
+    addRoutine() {
+        //this.props.postRoutine(routineName);
+    }
 
     selectRoutine(routineId) {
         this.props.getCheckByRoutine(routineId);

@@ -4,6 +4,7 @@ export const POST_ROUTINE = 'post_routine';
 export const SELECT_ROUTINE = 'select_routine';
 
 var database = firebase.database();
+//put routineName as parament and in place of 'inputRoutine'
 export function postRoutine() {
     const routine = database.ref('Routine').push().set({
         name : 'inputRoutine',
@@ -22,7 +23,6 @@ export function getRoutine() {
 
     return dispatch => {
         routines.on('value', snapshot => {
-            //_.each(snapshot.val(), () => )
             dispatch({
                 type: GET_ROUTINE,
                 payload: snapshot.val(),
@@ -32,6 +32,7 @@ export function getRoutine() {
 }
 
 export function selectRoutine(routineId) {
+    console.log("Label for Austin", routineId);
     return dispatch => {
         dispatch({
             type: SELECT_ROUTINE,

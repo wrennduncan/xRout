@@ -36,8 +36,6 @@ class Calendar extends React.Component {
         title: check.routine,
         start: check.date,
         end: check.date,
-        //TODO: make dates change
-        //Note: what if we used a date picker and separated the Year, Month, and Date to make input into the Date() format easy
       }
       checks.push(chk);
     });
@@ -68,7 +66,7 @@ class Calendar extends React.Component {
     //TODO: when you click on an item from the list of routines have it pull the identifire from the DB
     // this.props.routineId && this.props.getCheckByRoutine(this.props.routineId);
     return(
-      <div style={{ height: '300px'}}>
+      <div style={{ height: '500px'}}>
         <BigCalendar
           selectable
           events={checks}
