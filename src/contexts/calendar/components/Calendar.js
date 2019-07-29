@@ -20,7 +20,6 @@ class Calendar extends React.Component {
     this.makeChecks = this.makeChecks.bind(this);
 
     //TODO: does this need to be a separate method
-
     this.state = {
       name: 'React',
     };
@@ -33,7 +32,7 @@ class Calendar extends React.Component {
 
       const chk = {
         id: index,
-        title: check.routine,
+        title: '',
         start: check.date,
         end: check.date,
       }
@@ -74,8 +73,24 @@ class Calendar extends React.Component {
           endAccessor="end"
           defaultDate={moment().toDate()}
           localizer={localizer}
+          eventPropGetter={
+            (event) => {
+              let newStyle = {
+                display: 'inline-block',
+                width: '50px',
+                height: '50px',
+                border: '7px solid #fff',
+                background: `linear-gradient(45deg, rgba(0,0,0,0) 0%,rgba(0,0,0,0) 43%,#ff0000 45%,#ff0000 55%,rgba(0,0,0,0) 57%,rgba(0,0,0,0) 100%), 
+                              linear-gradient(135deg, #fff 0%,#fff 43%,#ff0000 45%,#ff0000 55%,#fff 57%,#fff 100%)`,
+              };
+              return {
+                className: "",
+                style: newStyle
+              };
+            }
+          }
+          onSelectSlot={this.handleSelect}
           onSelectEvent={event => this.deleteCheck(event)}
-           onSelectSlot={this.handleSelect}
         />
       </div>
     );
