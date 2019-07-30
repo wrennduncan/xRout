@@ -44,6 +44,9 @@ routines {
 
 .app-header {
   color: red;
+  font-size: 100px;
+  font-weight: 900;
+  text-align: center;
 }
 
 .rbc-row-segment {

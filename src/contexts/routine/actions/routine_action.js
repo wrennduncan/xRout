@@ -4,10 +4,9 @@ export const POST_ROUTINE = 'post_routine';
 export const SELECT_ROUTINE = 'select_routine';
 
 var database = firebase.database();
-//put routineName as parameter and in place of 'inputRoutine'
 export function postRoutine(routineName) {
     const routine = database.ref('Routine').push().set({
-        name : routineName,
+        name : routineName
     })
 
     return dispatch => {

@@ -10,12 +10,15 @@ import "react-big-calendar/lib/css/react-big-calendar.css";
 import {getCheck, getCheckByRoutine, createCheck, deleteCheck} from "../actions/calendar_actions";
 import {postRoutine} from "../../routine/actions/routine_action";
 
-// moment.locale("en");
-// BigCalendar.momentLocalizer(moment);
 const localizer = momentLocalizer(moment);
 
+//TODO: add the days of the week property during creating of a new routine
+//TODO: fix layout of the page
+//TODO: add more styling to the calendar component
+//TODO: add coloring if the goal for number of days in a week has been reached
+//TODO: add user registration
+//
 class Calendar extends React.Component {
-//TODO: ask Austin if adding props into the constructor and super affects our implementation
 
   constructor(props) {
     super(props);
@@ -29,7 +32,6 @@ class Calendar extends React.Component {
     this.toggle = this.toggle.bind(this);
     this.toggleDropDown = this.toggleDropDown.bind(this);
     this.handleInput = this.handleInput.bind(this);
-    this.testSubmit = this.testSubmit.bind(this);
   }
 
   makeChecks() {
@@ -84,26 +86,14 @@ class Calendar extends React.Component {
   }
 
   addRoutine(routineName) {
-    console.log("hit add routine", routineName)
     this.props.postRoutine(routineName);
     this.toggle();
     this.setState({routineName: ''})
   }
 
-  testSubmit() {
-    this.toggle();
-    console.log("yoyo")
-  }
-
-  //TODO: take the Routine Name input from the Add Routine Modal and use that in the creation of a new routine
-
   render() {
     const checks = this.props.checks ? this.makeChecks() : [];
-    console.log("PROPS", this.props.routineId)
-    //TODO: when you click on an item from the list of routines have it pull the identifire from the DB
     // this.props.routineId && this.props.getCheckByRoutine(this.props.routineId);
-    //onClick={() => this.addRoutine("hardcoded routine name")}
-    //
     return(
       <div style={{ height: '500px'}}>
           <Button color="danger" onClick={this.toggle} size="lg">Add Routine</Button>

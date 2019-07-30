@@ -1,4 +1,5 @@
 import React from 'react';
+import { Container, Row, Col } from 'reactstrap';
 import ReactDOM from 'react-dom';
 import './index.css';
 import Routine from './contexts/routine/components/Routine';
@@ -7,15 +8,17 @@ import Calendar from './contexts/calendar/components/Calendar';
 function App() {
 
   return (
-    <div className="App">
-      <h1 className="app-header">xRout.Life</h1>
+    <Container fluid>
+      <Row>
+        <Col className="app-header"> xRout.Life </Col>
+      </Row>
 
-      <Routine />
-      <Calendar />
-    </div>
+      <Row>
+        <Col sm={{size: 2, offset: 1}}> <Routine/> </Col>
+        <Col xs="8"> <Calendar/> </Col>
+      </Row>
+    </Container>
   );
 }
-
-//show = {this.state.show}
 
 export default App;

@@ -14,7 +14,6 @@ class Routine extends Component {
     
         this.renderRoutines = this.renderRoutines.bind(this);
         this.selectRoutine = this.selectRoutine.bind(this);
-        this.addRoutines = this.addRoutine.bind(this);
 
         this.state = {
         }
@@ -26,7 +25,6 @@ class Routine extends Component {
     }
 
     renderRoutines() {
-        //how does this.props.routine represent the list of routines? I think it comes from index
         return _.map(this.props.routine, (routine, index, key) => {
             return (
                 <li key={index} onClick={() => this.selectRoutine(index)}>{routine.name}</li>
@@ -34,10 +32,6 @@ class Routine extends Component {
         })
     }
 
-    addRoutine() {
-        console.log("hit add routine")
-        //this.props.postRoutine(routineName);
-    }
 
     selectRoutine(routineId) {
         this.props.getCheckByRoutine(routineId);
@@ -47,14 +41,8 @@ class Routine extends Component {
     render() {
         return(
             <div>
-                <button onClick={this.props.getRoutine}>
-                Get Routine
-                </button>
-                <button onClick={this.props.postRoutine}>
-                Add Routine
-                </button>
+                <h1>Routines:</h1>
                 <ul>
-                Routines:
                     {this.renderRoutines()}
                 </ul>
             </div>
