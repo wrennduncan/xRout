@@ -14,6 +14,7 @@ class Routine extends Component {
     
         this.renderRoutines = this.renderRoutines.bind(this);
         this.selectRoutine = this.selectRoutine.bind(this);
+        this.addRoutines = this.addRoutine.bind(this);
 
         this.state = {
         }
@@ -34,6 +35,7 @@ class Routine extends Component {
     }
 
     addRoutine() {
+        console.log("hit add routine")
         //this.props.postRoutine(routineName);
     }
 

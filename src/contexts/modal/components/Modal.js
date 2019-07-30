@@ -1,28 +1,31 @@
-import React from "react";
+import React from 'react';
+import { Button, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import ReactDOM from 'react-dom';
+
 
 export default class Modal extends React.Component {
-    state = {
-        show: false
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            modal: false
+        };
+
+        this.toggle = this.toggle.bind(this);
     }
+    
+    toggle() {
+        this.setState(prevState => ({
+          modal: !prevState.modal
+        }));
+      }
 
-    showModal = e => {
-        this.setState({ show: true });
-    }
 
-  render() {
-    // if(!this.props.show){
-    //     return null;
-    // }
-
-    return (
-    <div>
-        Hello Modal
-        <button onClick = {e => {
-            this.showModal();
-        }}>
-            Show Modal
-        </button>
-    </div>
-    );
+      render() {
+        return (
+            <div>
+                <Button color="danger" onClick={this.toggle}>{this.props.buttonLabel}</Button>
+            </div>
+        );
+      }
   }
-}
