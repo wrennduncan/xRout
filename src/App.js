@@ -12,13 +12,17 @@ function App() {
       <Row>
         <Col className="app-header"> xRout.Life </Col>
       </Row>
-
+      <Row>
+        <Col className="app-motto">Set Habits, Break Habits</Col>
+      </Row>
       <Row>
         <Col sm={{size: 2, offset: 1}}> <Routine/> </Col>
         <Col xs="8"> <Calendar/> </Col>
       </Row>
+
     </Container>
   );
 }
 
 export default App;
+

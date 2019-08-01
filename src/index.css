@@ -38,7 +38,7 @@ flexContainer {
 }
 
 routines {
-  position: absolute,
+  cursor: hand,
   
 }
 
@@ -47,6 +47,14 @@ routines {
   font-size: 100px;
   font-weight: 900;
   text-align: center;
+}
+
+.app-motto {
+  color: red;
+  font-size: 25px;
+  font-weight: 450;
+  text-align: center;
+  cursor: default;
 }
 
 .rbc-row-segment {

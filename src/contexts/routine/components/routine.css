@@ -1,0 +1,35 @@
+.app-header {
+    color: black;
+    font-size: 100px;
+    font-weight: 700;
+    text-align: center;
+    cursor: default;
+  }
+
+.routine-header {
+    color: red;
+    text-align: center;
+    font-size: 50px;
+    cursor: default;
+    padding-bottom: 10px;
+}
+
+.routines {
+    border-style: solid;
+    font-weight: bold;
+    border-color: black;
+    cursor: pointer;
+}
+
+.add-routine-button {
+    border-style: solid;
+    border-color: black;
+    width: 100%;
+}
+
+.routines-active {
+    border-style: solid;
+    border-color: black;
+    cursor: pointer;
+    background-color: lightcoral;
+}

@@ -1,4 +1,4 @@
-import {GET_ROUTINE, SELECT_ROUTINE} from '../contexts/routine/actions/routine_action';
+import {GET_ROUTINE, SELECT_ROUTINE, DELETE_ROUTINE} from '../contexts/routine/actions/routine_action';
 import _ from 'underscore';
 
 export default function(state = {}, action) {
@@ -11,9 +11,14 @@ export default function(state = {}, action) {
         case SELECT_ROUTINE:
             console.log("select routine hit", action.payload)
             // _.extend({state}, {routineId: action.payload.routineId});
+            //shouldn't this.props.routineId be getting set here every time we hit selectRoutine
             state.routineId = action.payload.routineId;
             console.log("State", state)
             return state;
+        case DELETE_ROUTINE: {
+            console.log("delete routine hit", state)
+            return state;
+        }
     }
     return state;
 }
